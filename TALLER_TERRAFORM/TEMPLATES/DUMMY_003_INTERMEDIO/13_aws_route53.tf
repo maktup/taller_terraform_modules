@@ -21,7 +21,7 @@
 
 ###### CREANDO RECURSOS: 'ROUTE-53' ######: 
 resource "aws_route53_zone" "r53_001" {
-  name = "capacitacion-terraform.com" //Setear el 'DOMINIO' (ÚNICO) del 'ROUTE-53'. 
+  name = "${var.const_dominio_route53}" //Setear el 'DOMINIO' (ÚNICO) del 'ROUTE-53'. 
 }
 
 resource "aws_route53_record" "server_001" {

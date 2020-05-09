@@ -252,7 +252,10 @@ variable "const_record_IPv4_route53" {
   description = "Tipo de registro - IPv4"
   default     = "A"
 } 
-
+variable "const_dominio_route53" {
+  description = "DOMINIO adquirido para 'ROUTE-53'"
+  default     = "capacitacion-terraform.com"
+} 
 
 #################### [API-GATEWAY] ###################
 variable "const_config_endpoint_ag" {

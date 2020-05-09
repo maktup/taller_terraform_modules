@@ -175,13 +175,15 @@ variable "const_timeout_healthCheck" {
 variable "const_interval_healthCheck" {
   description = "Intervalo de 'TIEMPO' para la publicación."
 }
-
+ 
 
 ###################### [ROUTE53] #####################
 variable "const_record_IPv4_route53" {
   description = "Tipo de registro - IPv4"
 }
-
+variable "const_dominio_route53" {
+  description = "DOMINIO adquirido para 'ROUTE-53'"
+} 
 
 #################### [API-GATEWAY] ###################
 variable "const_config_endpoint_ag" {

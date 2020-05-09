@@ -7,7 +7,7 @@
 
 ###### CREANDO RECURSO: 'PROVIDER' ######: 
 provider "aws" {
-  ### access_key = "AKIAWFKLYP2UT6MTZJNG"
-  ### secret_key = "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"
+  ## access_key = "AKIAWFKLYP2URHLS5UOP"
+  ## secret_key = "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"
   region = "${var.const_region}"
 }

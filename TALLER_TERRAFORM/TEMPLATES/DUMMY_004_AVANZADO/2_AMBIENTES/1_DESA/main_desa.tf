@@ -4,24 +4,25 @@
 #--------------------------------------------------------# 
 ## IMPORTANTE#1: Para el caso del 'PROVIDER'.., NO se puede manejar 'MODULARMENTE' & referenciarse.
 ## IMPORTANTE#2: Cada 'SERVICIO' de AWS debe de ser unicado dentro del directorio: '1. MODULOS/NOMBRE_SERVICIO'. 
-## IMPORTANTE#3: El contenido debe de ser 3 archivos: 'principal, constantes & output' 
-## IMPORTANTE#4: En directorio: 2. 'DESARROLLO' deberá contener 2 archivos: 'main & tfvars'.
-## IMPORTANTE#5: En el archivo: 'main', se referenciarán a cada uno de los 'MÓDULOS' & el contenido
+## IMPORTANTE#3: El manejo de los 'MÓDULOS' puede manejarse: 'LOCAL', 'REMOTO' (GITHUB). 
+## IMPORTANTE#4: El contenido debe de ser 3 archivos: 'principal, constantes & output' 
+## IMPORTANTE#5: En directorio: 2. 'DESARROLLO' deberá contener 2 archivos: 'main & tfvars'.
+## IMPORTANTE#6: En el archivo: 'main', se referenciarán a cada uno de los 'MÓDULOS' & el contenido
 ## interno será solo de los campos que se desee 'SOBREESCRIBIR' la información. 
-## IMPORTANTE#6: Los 'MÓDULOS' pueden ser referenciados 'LOCALMENTE' o 'REMÓTAMENTE' (GITHUB). 
+## IMPORTANTE#7: Los 'MÓDULOS' pueden ser referenciados 'LOCALMENTE' o 'REMÓTAMENTE' (GITHUB). 
 
 
 ############ CREANDO: 'PROVIDER'  ############: 
 provider "aws" {
+  ## access_key = "AKIAWFKLYP2URHLS5UOP"
+  ## secret_key = "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"
   region = "${var.const_region}"
 }
-
 
 //------------------------------------------ MÓDULO [IAM] ------------------------------------------// 
 module "modulo_iam" {
   source = "../../1_MODULOS/1_AWS/1_IAM"
-  //source = "git@github.com:hashicorp/example.git"
-  //source = "https://github.com/maktup/taller_terraform_modules.git"
+  //source = "github.com/maktup/taller_terraform_modules.git//TALLER_TERRAFORM/TEMPLATES/DUMMY_004_AVANZADO/1_MODULOS/1_AWS/1_IAM"
 
   //CAMPOS PARA 'SOBREESCRIBIR' [ESTÁTICOS]: 
   const_grupo_administradores = "${var.const_grupo_administradores}"
@@ -46,6 +47,7 @@ module "modulo_iam" {
 //------------------------------------------ MÓDULO [S3] ------------------------------------------// 
 module "modulo_s3" {
   source = "../../1_MODULOS/1_AWS/2_S3"
+  //source = "github.com/maktup/taller_terraform_modules.git//TALLER_TERRAFORM/TEMPLATES/DUMMY_004_AVANZADO/1_MODULOS/1_AWS/2_S3" 
 
   //CAMPOS PARA 'SOBREESCRIBIR' [ESTÁTICOS]: 
   const_bucket_s3                   = "${var.const_bucket_s3}"
@@ -64,6 +66,7 @@ module "modulo_s3" {
 //------------------------------------------ MÓDULO [VPC] ------------------------------------------//
 module "modulo_vpc" {
   source = "../../1_MODULOS/1_AWS/3_VPC"
+  //source = "github.com/maktup/taller_terraform_modules.git//TALLER_TERRAFORM/TEMPLATES/DUMMY_004_AVANZADO/1_MODULOS/1_AWS/3_VPC" 
 
   //CAMPOS PARA 'SOBREESCRIBIR' [ESTÁTICOS]: 
   const_cidrblok_vpc = "${var.const_cidrblok_vpc}"
@@ -76,6 +79,7 @@ module "modulo_vpc" {
 //------------------------------------------ MÓDULO [SUBNET] ------------------------------------------//
 module "modulo_subnet" {
   source = "../../1_MODULOS/1_AWS/4_SUBNET"
+  //source = "github.com/maktup/taller_terraform_modules.git//TALLER_TERRAFORM/TEMPLATES/DUMMY_004_AVANZADO/1_MODULOS/1_AWS/4_SUBNET" 
 
   //CAMPOS PARA 'SOBREESCRIBIR' [ESTÁTICOS]: 
   const_lista_ips_subnets          = "${var.const_lista_ips_subnets}"
@@ -89,6 +93,7 @@ module "modulo_subnet" {
 //-------------------------------------- MÓDULO [INTERNET-GATEWAY] --------------------------------------//
 module "modulo_internet_gateway" {
   source = "../../1_MODULOS/1_AWS/5_INTERNET_GATEWAY"
+  //source = "github.com/maktup/taller_terraform_modules.git//TALLER_TERRAFORM/TEMPLATES/DUMMY_004_AVANZADO/1_MODULOS/1_AWS/5_INTERNET_GATEWAY" 
 
   //CAMPOS PARA 'SOBREESCRIBIR' [ESTÁTICOS]:  
   //NO existen.
@@ -101,6 +106,7 @@ module "modulo_internet_gateway" {
 //---------------------------------------- MÓDULO [ROUTE-TABLE] ----------------------------------------//
 module "modulo_route_table" {
   source = "../../1_MODULOS/1_AWS/6_ROUTE_TABLE"
+  //source = "github.com/maktup/taller_terraform_modules.git//TALLER_TERRAFORM/TEMPLATES/DUMMY_004_AVANZADO/1_MODULOS/1_AWS/6_ROUTE_TABLE" 
 
   //CAMPOS PARA 'SOBREESCRIBIR' [ESTÁTICOS]:  
   //NO existen.
@@ -115,6 +121,7 @@ module "modulo_route_table" {
 //--------------------------------------- MÓDULO [SECURITY-GROUP] ---------------------------------------//
 module "modulo_security_group" {
   source = "../../1_MODULOS/1_AWS/7_SECURITY_GROUP"
+  //source = "github.com/maktup/taller_terraform_modules.git//TALLER_TERRAFORM/TEMPLATES/DUMMY_004_AVANZADO/1_MODULOS/1_AWS/7_SECURITY_GROUP"
 
   //CAMPOS PARA 'SOBREESCRIBIR' [ESTÁTICOS]:  
   const_valor_neutro                  = "${var.const_valor_neutro}"
@@ -132,6 +139,7 @@ module "modulo_security_group" {
 //---------------------------------------- MÓDULO [KEY-PAIR] ----------------------------------------//
 module "modulo_key_pair" {
   source = "../../1_MODULOS/1_AWS/8_KEY_PAIR"
+  //source = "github.com/maktup/taller_terraform_modules.git//TALLER_TERRAFORM/TEMPLATES/DUMMY_004_AVANZADO/1_MODULOS/1_AWS/8_KEY_PAIR"
 
   //CAMPOS PARA 'SOBREESCRIBIR' [ESTÁTICOS]:  
   const_contenido_public_keyPair = "${var.const_contenido_public_keyPair}"
@@ -145,6 +153,7 @@ module "modulo_key_pair" {
 //------------------------------------------ MÓDULO [EC2] ------------------------------------------//
 module "modulo_ec2" {
   source = "../../1_MODULOS/1_AWS/9_EC2"
+  //source = "github.com/maktup/taller_terraform_modules.git//TALLER_TERRAFORM/TEMPLATES/DUMMY_004_AVANZADO/1_MODULOS/1_AWS/9_EC2"
 
   //CAMPOS PARA 'SOBREESCRIBIR' [ESTÁTICOS]:  
   const_tipo_imagen_redhat    = "${var.const_tipo_imagen_redhat}"
@@ -162,6 +171,7 @@ module "modulo_ec2" {
 //------------------------------------------ MÓDULO [EIP] ------------------------------------------//
 module "modulo_eip" {
   source = "../../1_MODULOS/1_AWS/10_EIP"
+  //source = "github.com/maktup/taller_terraform_modules.git//TALLER_TERRAFORM/TEMPLATES/DUMMY_004_AVANZADO/1_MODULOS/1_AWS/10_EIP"
 
   //CAMPOS PARA 'SOBREESCRIBIR' [ESTÁTICOS]:  
   //NO existen.
@@ -174,6 +184,7 @@ module "modulo_eip" {
 //------------------------------------------ MÓDULO [ELB] ------------------------------------------//
 module "modulo_elb" {
   source = "../../1_MODULOS/1_AWS/11_ELB"
+  //source = "github.com/maktup/taller_terraform_modules.git//TALLER_TERRAFORM/TEMPLATES/DUMMY_004_AVANZADO/1_MODULOS/1_AWS/11_ELB"
 
   //CAMPOS PARA 'SOBREESCRIBIR' [ESTÁTICOS]:  
   const_timeout_inantividad_conexion    = "${var.const_timeout_inantividad_conexion}"
@@ -196,6 +207,7 @@ module "modulo_elb" {
 //---------------------------------------- MÓDULO [ROUTE-53] ----------------------------------------//
 module "modulo_route53" {
   source = "../../1_MODULOS/1_AWS/12_ROUTE_53"
+  //source = "github.com/maktup/taller_terraform_modules.git//TALLER_TERRAFORM/TEMPLATES/DUMMY_004_AVANZADO/1_MODULOS/1_AWS/12_ROUTE_53"
 
   //CAMPOS PARA 'SOBREESCRIBIR' [ESTÁTICOS]:  
   const_dominio_route53     = "${var.const_dominio_route53}"
@@ -209,6 +221,7 @@ module "modulo_route53" {
 
 module "modulo_api_gateway" {
   source = "../../1_MODULOS/1_AWS/13_API_GATEWAY"
+  //source = "github.com/maktup/taller_terraform_modules.git//TALLER_TERRAFORM/TEMPLATES/DUMMY_004_AVANZADO/1_MODULOS/1_AWS/13_API_GATEWAY"
 
   //CAMPOS PARA 'SOBREESCRIBIR' [ESTÁTICOS]:  
   const_directorio_script_openapi           = "${var.const_directorio_script_openapi}"
@@ -228,6 +241,7 @@ module "modulo_api_gateway" {
 //---------------------------------------- MÓDULO [AUTOSCALING] ----------------------------------------//
 module "modulo_autoscaling" {
   source = "../../1_MODULOS/1_AWS/14_AUTOSCALING"
+  //source = "github.com/maktup/taller_terraform_modules.git//TALLER_TERRAFORM/TEMPLATES/DUMMY_004_AVANZADO/1_MODULOS/1_AWS/14_AUTOSCALING"
 
   //CAMPOS PARA 'SOBREESCRIBIR' [ESTÁTICOS]:  
   const_tipo_imagen_redhat              = "${var.const_tipo_imagen_redhat}"
@@ -253,6 +267,7 @@ module "modulo_autoscaling" {
 //---------------------------------------- MÓDULO [CLOUDWATCH] ----------------------------------------//
 module "modulo_cloudwatch" {
   source = "../../1_MODULOS/1_AWS/15_CLOUDWATCH"
+  //source = "github.com/maktup/taller_terraform_modules.git//TALLER_TERRAFORM/TEMPLATES/DUMMY_004_AVANZADO/1_MODULOS/1_AWS/15_CLOUDWATCH"
 
   //CAMPOS PARA 'SOBREESCRIBIR' [ESTÁTICOS]:  
   const_lista_comparison_operator_cloudwatch = "${var.const_lista_comparison_operator_cloudwatch}"

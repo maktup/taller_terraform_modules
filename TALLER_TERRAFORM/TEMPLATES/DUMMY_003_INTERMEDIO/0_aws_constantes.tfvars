@@ -114,7 +114,7 @@ const_interval_healthCheck            = 30
 
 ###################### [ROUTE53] #####################
 const_record_IPv4_route53 = "A"
-
+const_dominio_route53     = "capacitacion-terraform.com"
 
 #################### [API-GATEWAY] ###################
 const_config_endpoint_ag                  = "REGIONAL"
@@ -136,7 +136,7 @@ const_metrics_granularity_asg         = "1Minute"
 const_cooldown_policy                 = 200
 const_lista_scaling_adjustment_policy = ["1", "-1"]
 const_lista_adjustment_type_policy    = ["ChangeInCapacity", "PercentChangeInCapacity", "ExactCapacity"]
- 
+
 
 #################### [CLOUDWATCH] #################### 
 const_evaluation_periods_cloudwatch        = "2"
