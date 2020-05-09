@@ -1,0 +1,48 @@
+openapi: 3.0.0
+info:
+  description: 'CONTRATO/API DEL MICROSERVICIO: terraform_microservice'
+  version: '1.0'
+  title: 'CONTRATO/API DEL MICROSERVICIO: terraform_microservice'
+  termsOfService: 'http://swagger.io/terms/'
+  contact:
+    email: cesarricardo_guerra19@hotmail.com
+    name: CESAR GUERRA
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+    
+servers:
+  - url: 'http://pe.com.capacitacion/terraformservice'
+  
+paths:
+  ###################################################################################################
+  ############################################ [SALUDAR] ############################################
+  ###################################################################################################
+                  
+  ####### [MICROSERVICIO#1] #######  
+  '/get/saludar/{nombre}/{server}':
+    get:
+      summary: 'Funcionalidad para [SALUDAR] en base al envio del  por nombre & server.'
+      description: 'Funcionalidad para [SALUDAR] en base al envio del  por nombre & server.'
+      operationId: saludar
+      parameters:
+        - name: nombre
+          in: path
+          description: El nombre del Empleado
+          required: true
+          schema:
+            type: string
+        - name: server
+          in: path
+          description: El server manejado
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: ""
+                    
+externalDocs:
+  description: Encuentra mas sobre SWAGGER
+  url: 'http://swagger.io'
+ 
